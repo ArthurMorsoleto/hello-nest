@@ -8,4 +8,4 @@
 - POST `/users` - Cria um novo usuário
 
 ## Autor
-- [Arthur Batista](arthur.batista@aluno.faculdadeimpacta.com.br)
+- Arthur Batista - arthur.batista@aluno.faculdadeimpacta.com.br
