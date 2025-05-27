@@ -30,7 +30,7 @@ export class UsersService {
         return user;
     }
 
-    delete(email: string) {
+    delete(email: string) { // TODO: Implement delete user by id
         const userIndex = this.users.findIndex(u => u.email === email);
         console.log('userIndex:' + userIndex);
         console.log('users:' + this.users);
