@@ -6,10 +6,12 @@ import { identity } from 'rxjs';
 export class UsersService {
     private readonly users = [
         {
+            id: 1,
             name: 'João da Silva',
             email: 'joaodasilva@email.com'
         },
         {
+            id: 2,
             name: 'Maria da Silva',
             email: 'mariadasilva@email.com'
         }
@@ -26,21 +28,20 @@ export class UsersService {
         if (this.users.find(u => u.email === user.email)) {
             throw new Error('Email already exists');
         }
+        user.id = this.users.length + 1;
         this.users.push(user);
         return user;
     }
 
-    findByEmail(email: string): Promise<User> {
-        const user = this.users.find(u => u.email === email);
+    findById(id: number): Promise<User> {
+        const user = this.users.find(u => u.id === id);
+        console.log('id', id);
+        console.log(this.users);
         return user ? Promise.resolve(user) : Promise.reject(new Error('User not found'));
     }
 
-    delete(email: string): Promise<User> { // TODO: Implement delete user by id
-        const userIndex = this.users.findIndex(u => u.email === email);
-        console.log('userIndex:' + userIndex);
-        console.log('users:' + this.users);
-        console.log('email:' + email);
-
+    delete(id: number): Promise<User> {
+        const userIndex = this.users.findIndex(u => u.id === id);
         if (userIndex === -1) {
             throw new Error('User not found');
         }

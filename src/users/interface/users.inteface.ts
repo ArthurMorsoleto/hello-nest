@@ -1,4 +1,5 @@
-export interface User { // TODO: Implement user id
+export interface User {
+    id: number,
     name: string;
     email: string;
 }

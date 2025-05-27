@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post } from "@nestjs/common";
 import { UsersService } from "./users.service";
 import { User } from "./interface/users.inteface";
 
@@ -17,13 +17,13 @@ export class UsersController {
         return this.usersService.create(user);
     }
 
-    @Delete('delete')
-    delete(@Body('email') email: string): Promise<User> {
-        return this.usersService.delete(email);
+    @Delete(':id')
+    delete(@Param('id',ParseIntPipe) id: number): Promise<User> {
+        return this.usersService.delete(id);
     }
 
-    @Get('user-by-email')
-    findByEmail(@Body('email') email: string): Promise<User> {
-        return this.usersService.findByEmail(email);
+    @Get(':id')
+    findById(@Param('id', ParseIntPipe) id: number): Promise<User> {
+        return this.usersService.findById(id);
     }
 }
