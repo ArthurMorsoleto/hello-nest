@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { User } from './interface/users.inteface';
 
 @Injectable()
 export class UsersService {
@@ -13,12 +14,12 @@ export class UsersService {
         }
     ];
 
-    create(user) {
+    create(user: User) {
         this.users.push(user);
         return user;
     }
 
-    findAll() {
-        return this.users;
+    findAll(): Promise<User[]> {
+        return Promise.resolve(this.users);
     }
 }
