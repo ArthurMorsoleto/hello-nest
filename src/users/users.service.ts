@@ -35,8 +35,6 @@ export class UsersService {
 
     findById(id: number): Promise<User> {
         const user = this.users.find(u => u.id === id);
-        console.log('id', id);
-        console.log(this.users);
         return user ? Promise.resolve(user) : Promise.reject(new Error('User not found'));
     }
 
