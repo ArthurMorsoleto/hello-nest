@@ -18,7 +18,12 @@ export class UsersController {
     }
 
     @Delete('delete')
-    delete(@Body('email') email: string): User {
+    delete(@Body('email') email: string): Promise<User> {
         return this.usersService.delete(email);
+    }
+
+    @Get('user-by-email')
+    findByEmail(@Body('email') email: string): Promise<User> {
+        return this.usersService.findByEmail(email);
     }
 }

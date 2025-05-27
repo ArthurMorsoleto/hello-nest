@@ -30,7 +30,12 @@ export class UsersService {
         return user;
     }
 
-    delete(email: string) { // TODO: Implement delete user by id
+    findByEmail(email: string): Promise<User> {
+        const user = this.users.find(u => u.email === email);
+        return user ? Promise.resolve(user) : Promise.reject(new Error('User not found'));
+    }
+
+    delete(email: string): Promise<User> { // TODO: Implement delete user by id
         const userIndex = this.users.findIndex(u => u.email === email);
         console.log('userIndex:' + userIndex);
         console.log('users:' + this.users);
@@ -40,7 +45,7 @@ export class UsersService {
             throw new Error('User not found');
         }
         const deletedUser = this.users.splice(userIndex, 1);
-        return deletedUser[0];
+        return Promise.resolve(deletedUser[0]);
     }
 
 }
